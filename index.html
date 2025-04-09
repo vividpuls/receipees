@@ -1,13 +1,131 @@
-<!DOCTYPE html>
+
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Banana Recipe Book</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VPs Recipe Recipe</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eaf6ff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background: #007acc;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .lang-switcher {
+      text-align: center;
+      margin: 1rem;
+    }
+    .lang-switcher button {
+      margin: 0 5px;
+      padding: 8px 12px;
+      border: none;
+      background: #007acc;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .lang-switcher button:hover {
+      background: #005b99;
+    }
+    .card {
+      max-width: 600px;
+      margin: 1rem auto;
+      background: white;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+  </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script src="main.js"></script>
+
+  <header>
+    <h1 id="title">Banana Cake</h1>
+  </header>
+
+  <div class="lang-switcher">
+    <button onclick="setLang('en')">English</button>
+    <button onclick="setLang('de')">Deutsch</button>
+    <button onclick="setLang('mr')">मराठी</button>
+    <button onclick="setLang('it')">Italiano</button>
+    <button onclick="setLang('nl')">Nederlands</button>
+  </div>
+
+  <div class="card">
+    <h2 id="ingredients-title">Ingredients:</h2>
+    <ul id="ingredients"></ul>
+    <h2 id="steps-title">Steps:</h2>
+    <ol id="steps"></ol>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Banana Recipe Book</p>
+  </footer>
+
+  <script>
+    const data = {
+      en: {
+        title: "Banana Cake",
+        ingredientsTitle: "Ingredients:",
+        stepsTitle: "Steps:",
+        ingredients: ["2 bananas", "1.5 cups flour", "1/2 cup sugar", "1/4 cup butter", "1 tsp baking powder"],
+        steps: ["Preheat oven", "Mash bananas", "Mix all ingredients", "Bake at 180°C for 30 mins"]
+      },
+      de: {
+        title: "Bananenkuchen",
+        ingredientsTitle: "Zutaten:",
+        stepsTitle: "Schritte:",
+        ingredients: ["2 Bananen", "1,5 Tassen Mehl", "1/2 Tasse Zucker", "1/4 Tasse Butter", "1 TL Backpulver"],
+        steps: ["Ofen vorheizen", "Bananen zerdrücken", "Alle Zutaten mischen", "Bei 180°C 30 Minuten backen"]
+      },
+      mr: {
+        title: "केळ्याचा केक",
+        ingredientsTitle: "साहित्य:",
+        stepsTitle: "कृती:",
+        ingredients: ["२ केळी", "१.५ कप पीठ", "१/२ कप साखर", "१/४ कप लोणी", "१ टीस्पून बेकिंग पावडर"],
+        steps: ["ओव्हन गरम करा", "केळी चिरून घ्या", "सर्व साहित्य एकत्र करा", "१८०°C वर ३० मिनिटे बेक करा"]
+      },
+      it: {
+        title: "Torta alla banana",
+        ingredientsTitle: "Ingredienti:",
+        stepsTitle: "Passaggi:",
+        ingredients: ["2 banane", "1.5 tazze di farina", "1/2 tazza di zucchero", "1/4 tazza di burro", "1 cucchiaino di lievito"],
+        steps: ["Preriscaldare il forno", "Schiacciare le banane", "Mescolare gli ingredienti", "Cuocere a 180°C per 30 minuti"]
+      },
+      nl: {
+        title: "Bananencake",
+        ingredientsTitle: "Ingrediënten:",
+        stepsTitle: "Stappen:",
+        ingredients: ["2 bananen", "1,5 kopjes bloem", "1/2 kop suiker", "1/4 kop boter", "1 theelepel bakpoeder"],
+        steps: ["Verwarm de oven voor", "Prak de bananen", "Meng alles", "Bak 30 minuten op 180°C"]
+      }
+    };
+
+    function setLang(lang) {
+      const d = data[lang];
+      document.getElementById('title').innerText = d.title;
+      document.getElementById('ingredients-title').innerText = d.ingredientsTitle;
+      document.getElementById('steps-title').innerText = d.stepsTitle;
+
+      document.getElementById('ingredients').innerHTML = d.ingredients.map(i => `<li>${i}</li>`).join("");
+      document.getElementById('steps').innerHTML = d.steps.map(s => `<li>${s}</li>`).join("");
+    }
+
+    // Default language
+    setLang('en');
+  </script>
+
+
 </body>
 </html>
